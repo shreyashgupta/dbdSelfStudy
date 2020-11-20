@@ -1,0 +1,9 @@
+.btns
+{
+	display: flex;
+	justify-content: center;
+}
+.btns>*
+{
+	margin:20px;
+}
