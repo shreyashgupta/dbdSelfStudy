@@ -1,7 +1,7 @@
 import React from 'react';
 import 'tachyons';
 import { auth , firestore} from '../../backend/server';
-class FacultyLogin extends React.Component {
+class StudentSignIn extends React.Component {
  constructor(props) {
         super(props)
 
@@ -36,24 +36,24 @@ class FacultyLogin extends React.Component {
       }
   }
 
-    f1 = async () => {
-    const snapShot = await firestore.collection('employers').get();
-    const docsArray = snapShot.docs;
-    const docsArrayData = docsArray.map(doc => doc.data());
-    return docsArrayData;
-  }
-  functionFirebase = async () => {
-            const array = await this.f1();
-            //console.log(array)
-            for(let i=0;i<array.length;i++)
-                if(array[i].email===this.state.email)
-                    //console.log(array[i].email,this.state.email)
-                 this.setState({currentUser: array[i]})
-            //console.log(this.state.currentUser)
-            localStorage.setItem("name",this.state.currentUser.name)
-            localStorage.setItem("email",this.state.currentUser.email)
-            localStorage.setItem("phNo",this.state.currentUser.phNo)
-  }
+  //   f1 = async () => {
+  //   const snapShot = await firestore.collection('employers').get();
+  //   const docsArray = snapShot.docs;
+  //   const docsArrayData = docsArray.map(doc => doc.data());
+  //   return docsArrayData;
+  // }
+  // functionFirebase = async () => {
+  //           const array = await this.f1();
+  //           //console.log(array)
+  //           for(let i=0;i<array.length;i++)
+  //               if(array[i].email===this.state.email)
+  //                   //console.log(array[i].email,this.state.email)
+  //                this.setState({currentUser: array[i]})
+  //           //console.log(this.state.currentUser)
+  //           localStorage.setItem("name",this.state.currentUser.name)
+  //           localStorage.setItem("email",this.state.currentUser.email)
+  //           localStorage.setItem("phNo",this.state.currentUser.phNo)
+  // }
   onEmailChange = (event) => {
     this.setState({email: event.target.value})
   }
@@ -73,14 +73,14 @@ class FacultyLogin extends React.Component {
           //   for(let j=0;j>5;j++);
           // console.log(this.state.users);
           //alert(`Logged in as Employer successfully`);
-          localStorage.setItem('token',"faculty");
-          alert("SignedIn as faculty")
-      if(window.location.port){
-          window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
-      }
-      else{
-          window.location.assign(`http://${window.location.hostname}/`);
-      }
+          localStorage.setItem('token',"student");
+          alert("SignedIn as student");
+          if(window.location.port){
+              window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
+          }
+          else{
+              window.location.assign(`http://${window.location.hostname}/`);
+          }
       } catch (error) {
           console.log(error);
           alert(error.message);
@@ -106,7 +106,7 @@ class FacultyLogin extends React.Component {
         <main className="pa4 black-80">
           <div className="measure">
             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f1 fw6 ph0 mh0">Faculty Login</legend>
+              <legend className="f1 fw6 ph0 mh0">Student Login</legend>
               <div className="mt3">
                 <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                 <input
@@ -151,4 +151,4 @@ class FacultyLogin extends React.Component {
   }
 }
 
-export default FacultyLogin;
+export default StudentSignIn;

@@ -38,23 +38,38 @@ class LandingPage extends React.Component {
       <div>
       <h1>This is Landing Page</h1>
       <div className='btns'>
-      <Link to="/studentLogin"><div>
-          <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-            type="submit"
-            value="Login as Student"
-          />
-      </div>
-      </Link>
-      <Link to="/facultyLogin">
       <div>
+      <Link to="/studentSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
             type="submit"
-            value="Login as Faculty"
+            value="SignIn as Student"
           />
-      </div>
       </Link>
+      <Link to="/studentSignUp">
+          <input
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+            type="submit"
+            value="Student SignUp"
+          />
+      </Link>
+      </div>
+      <div>
+      <Link to="/facultySignIn">
+          <input
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+            type="submit"
+            value="SignIn as Faculty"
+          />
+        </Link>
+        <Link to="facultySignUp">
+          <input
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+            type="submit"
+            value="Faculty SignUp"
+          />
+      </Link>
+      </div>
       </div></div>:
       <div>
       <h1>Already Logged in</h1>

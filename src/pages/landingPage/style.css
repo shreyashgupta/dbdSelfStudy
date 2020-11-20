@@ -5,5 +5,12 @@
 }
 .btns>*
 {
+	display: flex;
+	flex-direction: column;
+	margin:20px;
+}
+.btns .x
+{
+	width:13vw;
 	margin:20px;
 }
