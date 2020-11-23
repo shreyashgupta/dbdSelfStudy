@@ -1,8 +1,12 @@
 import React from 'react';
 import 'tachyons';
 import {Link} from 'react-router-dom';
+
 import { auth , firestore} from '../../backend/server';
 import './style.css'
+
+//import {givVal} from '../../backend/index';
+//const { spawn } = require('child_process')
 class LandingPage extends React.Component {
  constructor(props) {
     super();
@@ -31,7 +35,10 @@ class LandingPage extends React.Component {
           window.location.assign(`http://${window.location.hostname}/`);
       }
   }
+componentDidMount()
+{
 
+}
   render() {
     return (
       this.state.isLoggedin==false?

@@ -56,7 +56,7 @@ class FacultySignUp extends React.Component {
         else if(password!=passwordc)
             alert("passwords do not match");
         else {
-            const userRef = firestore.doc(`faculty/${name}`);
+            const userRef = firestore.doc(`faculty/${email}`);
             //const snapShot = await firestore.collection('Users').get();
             
             const registeredUser = {email,password,name,phNo};

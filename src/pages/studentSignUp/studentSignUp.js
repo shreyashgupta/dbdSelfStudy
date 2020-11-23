@@ -56,7 +56,7 @@ class StudentSignUp extends React.Component {
         else if(password!=passwordc)
             alert("passwords do not match");
         else {
-            const userRef = firestore.doc(`student/${name}`);
+            const userRef = firestore.doc(`student/${email}`);
             //const snapShot = await firestore.collection('Users').get();
             
             const registeredUser = {email,password,name,phNo};
@@ -78,7 +78,6 @@ class StudentSignUp extends React.Component {
                 name: '',
                 phNo:''
                 })
-                alert("SignUp Successdull");
               if(window.location.port){
                   window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
               }

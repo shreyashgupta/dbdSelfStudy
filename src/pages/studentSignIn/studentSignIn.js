@@ -74,6 +74,7 @@ class StudentSignIn extends React.Component {
           // console.log(this.state.users);
           //alert(`Logged in as Employer successfully`);
           localStorage.setItem('token',"student");
+          localStorage.setItem('email',email);
           alert("SignedIn as student");
           if(window.location.port){
               window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);

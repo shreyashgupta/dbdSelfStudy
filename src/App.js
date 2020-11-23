@@ -6,7 +6,11 @@ import StudentSignIn from './pages/studentSignIn/studentSignIn.js';
 import FacultySignIn from './pages/facultySignIn/facultySignIn.js';
 import FacultySignUp from './pages/facultySignUp/facultySignUp.js';
 import StudentSignUp from './pages/studentSignUp/studentSignUp.js';
+import SubmissionPage from './pages/submissionPage/submissionPage.js';
+import CreateQuestion from './pages/createQuestion/createQuestion.js';
 import LandingPage from './pages/landingPage/landingPage.js';
+import Faculty from './pages/faculty/faculty.js';
+
 // import Map from './components/Map.js';
 
 function App() {
@@ -28,6 +32,15 @@ function App() {
           </Route>
           <Route exact path='/studentSignUp'>
             <StudentSignUp/>
+          </Route>
+          <Route exact path='/submissionPage'>
+            <SubmissionPage/>
+          </Route>
+          <Route exact path='/createQuestion'>
+            <CreateQuestion/>
+          </Route>
+          <Route exact path='/faculty'>
+            <Faculty/>
           </Route>
         </div>
       </BrowserRouter>

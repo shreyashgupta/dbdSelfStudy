@@ -74,9 +74,10 @@ class FacultySignIn extends React.Component {
           // console.log(this.state.users);
           //alert(`Logged in as Employer successfully`);
           localStorage.setItem('token',"faculty");
+          localStorage.setItem('email',email);
           alert("SignedIn as faculty")
       if(window.location.port){
-          window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
+          window.location.assign(`http://${window.location.hostname}:${window.location.port}/faculty`);
       }
       else{
           window.location.assign(`http://${window.location.hostname}/`);

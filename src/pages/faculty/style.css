@@ -1,0 +1,13 @@
+.fac .btns
+{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.btns .x
+{
+	width:16vw;
+	margin:20px;
+	text-decoration: none;
+}
