@@ -40,10 +40,11 @@ handleChange = (event) => {
       if(ques.length==0 || model_ans.length==0 )
           alert("details entered not valid")
       else {
-          const userRef = firestore.doc(`questions/`+ Math.floor((Math.random() * 100) + 1));
+          let id= Math.floor((Math.random() * 100) + 1);
+          const userRef = firestore.doc(`questions/`+ id);
           //const snapShot = await firestore.collection('Users').get();
           
-          const qa = {ques,model_ans};
+          const qa = {ques,model_ans,id};
 
           try {
               await userRef.set(qa);
@@ -55,7 +56,7 @@ handleChange = (event) => {
               })
               alert("Created Question");
             if(window.location.port){
-                window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
+                window.location.assign(`http://${window.location.hostname}:${window.location.port}/faculty`);
             }
             else{
                 window.location.assign(`http://${window.location.hostname}/`);
@@ -101,7 +102,7 @@ handleChange = (event) => {
                                 onClick={this.handleSubmit}
                                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                 type="submit"
-                                value="Register"
+                                value="Create"
                             />
                         </div>
                     </div>
