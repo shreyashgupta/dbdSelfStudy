@@ -10,6 +10,7 @@ import SubmissionPage from './pages/submissionPage/submissionPage.js';
 import CreateQuestion from './pages/createQuestion/createQuestion.js';
 import LandingPage from './pages/landingPage/landingPage.js';
 import Faculty from './pages/faculty/faculty.js';
+import Student from './pages/student/student.js';
 import CreateTest from './pages/createTest/createTest.js';
 
 // import Map from './components/Map.js';
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path='/faculty'>
             <Faculty/>
+          </Route>
+          <Route exact path='/student'>
+            <Student/>
           </Route>
           <Route exact path='/createTest'>
             <CreateTest/>

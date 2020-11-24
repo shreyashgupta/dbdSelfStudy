@@ -77,7 +77,7 @@ class StudentSignIn extends React.Component {
           localStorage.setItem('email',email);
           alert("SignedIn as student");
           if(window.location.port){
-              window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
+              window.location.assign(`http://${window.location.hostname}:${window.location.port}/student`);
           }
           else{
               window.location.assign(`http://${window.location.hostname}/`);
