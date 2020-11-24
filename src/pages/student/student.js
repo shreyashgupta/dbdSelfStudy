@@ -1,6 +1,6 @@
 import React from 'react';
 import 'tachyons';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import { auth , firestore} from '../../backend/server';
 import './style.css'
@@ -32,9 +32,6 @@ class Student extends React.Component {
   handleSignOut = (event) => {
       auth.signOut();
       localStorage.removeItem('token');
-      // localStorage.removeItem('name');
-      // localStorage.removeItem('phNo');
-      // localStorage.removeItem('email');
       alert("Logged out successfully");
       if(window.location.port){
           window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
@@ -53,8 +50,8 @@ class Student extends React.Component {
   }
   takeTest=(event)=>
   {
-    this.setState({takeTest:true});
-    this.setState({test:event.target.name})
+    localStorage.setItem('test_no',this.state.tests[event.target.name-1].id);
+    <Redirect to="/submissonPage" />
   }
 async f1() {
     let snapShot;
@@ -93,8 +90,8 @@ async componentWillMount() {
 }
   render() {
     return (
-      this.state.isStudent?this.state.takeTest==false?
-      <div className='fac'>
+      this.state.isStudent?
+      <div>
       <h1>Welcome  {this.state.name}</h1>
       <h2>Available Tests</h2>
       {
@@ -102,46 +99,17 @@ async componentWillMount() {
           <div>
           {
             this.state.tests.map((x,i)=>
-              <input
+              <Link to="/submissionPage"><input
                   onClick={this.takeTest}
-                  className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                  className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
                   type="submit"
-                  value={i+1}
+                  value={x.id}
                   name={i+1}
-              />
+              /></Link>
               )
           }
           </div>:<h2>Loading</h2>
       }
-      </div>:
-      <div className="taking_test">
-      <h1>Take Test {this.state.test}</h1>
-      {
-        // console.log(this.state.tests[this.state.test-1].shuff)
-          this.state.tests[this.state.test-1].shuff.map((x,i)=>
-          {
-              return <div>
-
-                  <label className="db fw6 lh-copy f3 ma3">{x.ques}</label>              
-                  <textarea
-                  onChange={this.handleChange}
-                  className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-40"
-                  type="text"
-                  name={i}
-                  id="ans"
-              />
-              </div>
-          }
-          )
-      }
-      <div >
-          <input
-              onClick={this.handleSubmit}
-              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma3"
-              type="submit"
-              value="Submit"
-          />
-      </div>
       </div>
       :
       <div>

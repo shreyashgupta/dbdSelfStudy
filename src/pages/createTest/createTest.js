@@ -61,10 +61,11 @@ shuffle(o) {
       if(nques<test_ques)
         alert("Enter a value less than or equal number of available questions")
       else {
-          const userRef = firestore.doc(`test/`+ Math.floor((Math.random() * 1000) + 1));
+        const id=Math.floor((Math.random() * 1000) + 1)
+          const userRef = firestore.doc(`test/`+id);
           //const snapShot = await firestore.collection('Users').get();
           
-          const test = {shuff};
+          const test = {shuff,id};
 
           try {
               await userRef.set(test);
