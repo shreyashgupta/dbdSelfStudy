@@ -62,8 +62,8 @@ shuffle(o) {
       let shuff=this.shuffle(this.state.ques).slice(0,this.state.test_ques);
       console.log(shuff);
       const { ques,test_ques,nques} = this.state;
-      if(nques<test_ques)
-        alert("Enter a value less than or equal number of available questions")
+      if(nques<test_ques && test_ques>0)
+        alert("Enter a value less than or equal number of available questions and greater than zero")
       else {
         const id=Math.floor((Math.random() * 1000) + 1)
           const userRef = firestore.doc(`test/`+id);

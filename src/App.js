@@ -7,6 +7,7 @@ import FacultySignIn from './pages/facultySignIn/facultySignIn.js';
 import FacultySignUp from './pages/facultySignUp/facultySignUp.js';
 import StudentSignUp from './pages/studentSignUp/studentSignUp.js';
 import SubmissionPage from './pages/submissionPage/submissionPage.js';
+import ViewSubmissions from './pages/viewSubmissions/viewSubmissions.js';
 import CreateQuestion from './pages/createQuestion/createQuestion.js';
 import LandingPage from './pages/landingPage/landingPage.js';
 import Faculty from './pages/faculty/faculty.js';
@@ -40,6 +41,12 @@ function App() {
           </Route>
           <Route exact path='/createQuestion'>
             <CreateQuestion/>
+          </Route>
+          <Route exact path='/create'>
+            <CreateQuestion/>
+          </Route>
+          <Route exact path='/viewSubmissions'>
+            <ViewSubmissions/>
           </Route>
           <Route exact path='/faculty'>
             <Faculty/>

@@ -64,8 +64,10 @@ handleSubmit= async (event)=>
       
         const qid=this.state.test[i].id;
         const answer=this.state.answers[i];
-        const userRef = firestore.doc(`answer/`+this.state.email+qid);
-        const ans={answer,qid,test_no};
+        const aid=this.state.email+qid;
+        const userRef = firestore.doc(`answer/`+aid);
+        const score =-1;
+        const ans={answer,qid,test_no,aid,score};
         try {
           await userRef.set(ans);
           console.log("done",i);

@@ -8,14 +8,13 @@ import { auth , firestore} from '../../backend/server';
 class ViewSubmissions extends React.Component {
  constructor(props) {
     super();
-    // this.takeTest=this.takeTest.bind(this);
     // this.handleSubmit=this.handleSubmit.bind(this);
     // this.handleChange=this.handleChange.bind(this);
     this.state=
     {
       isFaculty:false,
       email:"",
-      submissions:[],
+      submissions:[]
     }
     let token=localStorage.getItem('token');
     if(token=="faculty")
@@ -48,8 +47,7 @@ class ViewSubmissions extends React.Component {
   //   localStorage.setItem('test_no',this.state.tests[event.target.name-1].id);
   // }
 // async f1() {
-//     let snapShot;
-//     snapShot =await firestore.collection('student').doc(this.state.email);
+//     let snapShot =await firestore.collection('questions').doc(43);
 //       let obj;
 //       await snapShot.get().then(function(doc) {
 //           if (doc.exists) {
@@ -64,49 +62,69 @@ class ViewSubmissions extends React.Component {
 //       return obj;
 // }
   f2 = async () => {
-  const snapShot = await firestore.collection('asnwers').get();
+  const email=localStorage.getItem('email');
+  let snapShot = await firestore.collection('answer').get();
   const docsArray = snapShot.docs;
-  const docsArrayData = docsArray.map(doc => doc.data());
-  return docsArrayData;
+  let arr = docsArray.map(doc =>doc.data());
+  let arr2=[];
+  for(let i=0;i<arr.length;i++)
+  {
+    let qid=arr[i].qid;
+    let snapShot2 =await firestore.collection('questions').doc(`${qid}`);
+      await snapShot2.get().then(function(doc) {
+          if (doc.exists) {
+            if(email==doc.data().created_by)
+                arr2.push(
+                {
+                  test_no:arr[i].test_no,
+                  answer:arr[i].answer,
+                  model_answer:doc.data().model_ans,
+                  question:doc.data().ques
+                })
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+      //const ret=await this.f1(arr[i].qid);
+      // console.log(ret);
+  }
+  return arr2;
+  // arr=arr.filter((x,i)=>
+  //   {
+  //       return x.created_by==this.state.email;
+  //   }
+  // )
 }
 
 async componentWillMount() {
-  if(this.state.isStudent)
+  if(this.state.isFaculty)
   {
-  let obj = await this.f1();
-  this.setState({data:obj});
-  console.log(this.state.data);
-  this.setState({name:obj.name});
-  obj=await this.f2();
-  this.setState({tests:obj});
+  let  arr2=await this.f2();
+  // arr2=arr2.filter((x,i)=>{
+  //     return x.created_by===this.state.email;
+  // } ) // this.setState({submissions:obj});
+  this.setState({submissions:arr2});
   console.log(this.state);
 }
 }
   render() {
     return (
-      this.state.isStudent?
+      this.state.isFaculty?
       <div>
-      <h1>Welcome  {this.state.name}</h1>
-      <h2>Available Tests</h2>
-      {
-        this.state.tests.length?
-          <div>
+      <h1>These are all ques attempted</h1>
           {
-            this.state.tests.map((x,i)=>
-            {
-                if(x.attempted_by.indexOf(this.state.email)==-1)
-                  return <Link to="/submissionPage"><input
-                      onClick={this.takeTest}
-                      className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
-                      type="submit"
-                      value={x.id}
-                      name={i+1}
-                  /></Link>
-            }
-              )
-          }
-          </div>:<h2>Loading</h2>
-      }
+          this.state.submissions.map((x,i)=>
+            <div>
+            <h1>{x.test_no}</h1>
+            <h2>{x.question}</h2>
+            <h3>{x.model_answer}</h3>
+            <h2>{x.answer}</h2>
+            </div>
+            )
+        }
       </div>
       :
       <div>

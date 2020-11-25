@@ -115,7 +115,7 @@ async componentWillMount() {
       </div>
       :
       <div>
-      <h1>Sign in as faculty required</h1>
+      <h1>Sign in as student required</h1>
       </div>
     );
   }
