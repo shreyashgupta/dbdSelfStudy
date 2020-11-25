@@ -13,12 +13,16 @@ class CreateTest extends React.Component{
       nques:0,
       isFaculty:false,
       ques:[],
-      test_ques:0
+      email:'',
+      test_ques:0,
+      email:""
     }
     let token=localStorage.getItem('token');
+    let email=localStorage.getItem('email');    
     if(token=="faculty")
     {
       this.state.isFaculty=true;
+      this.state.email=email;
     }
 
   }
@@ -64,8 +68,11 @@ shuffle(o) {
         const id=Math.floor((Math.random() * 1000) + 1)
           const userRef = firestore.doc(`test/`+id);
           //const snapShot = await firestore.collection('Users').get();
-          
-          const test = {shuff,id};
+          const attempted_by=[];
+          const duration=1;
+          const created_by=this.state.email
+          const attempts=0;
+          const test = {shuff,id,attempted_by,duration,created_by};
 
           try {
               await userRef.set(test);

@@ -17,13 +17,20 @@ class SubmissionPage extends React.Component {
       isStudentin:false,
       test_no:0,
       test:[],
-      answers:[]
+      answers:[],
+      email:"",
+      time:0
     }
     let token=localStorage.getItem('token');
     let tn=localStorage.getItem('test_no');
+    let email=localStorage.getItem('email');
     if(tn)
     {
       this.state.test_no=tn;
+    }
+    if(email)
+    {
+      this.state.email=email;
     }
     if(token=="student")
       this.state.isStudent=true;
@@ -47,32 +54,55 @@ handleChange = (event) => {
     let val=event.target.name;
     this.state.answers[val]=event.target.value;
 }
-handleSubmit=()=>
+handleSubmit= async (event)=>
   {
     console.log(this.state);
-    // const array=["this is answer 1", "this is answer 2"];
-    //   let d={
-    //   method:"POST",
-    //   body: JSON.stringify(
-    //     {
-    //       res:array
-    //     }),
-    //   headers:{
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   }
-    //       }
-    //       fetch("http://127.0.0.1:5000/submit",d)
-    //       .then(res=>res.json())
-    //       .then(data=>{
-    //         console.log(data)
-    //         if(data.res==='success')
-    //           {
-    //            alert("YO DONE score is "+data.eval);
-    //           }
-    //           else
-    //             alert("Something went wrong");
-    //       });
+    const qids=[];
+    const test_no=this.state.test_no;
+    for(let i=0;i<this.state.test.length;i++)
+    {
+      
+        const qid=this.state.test[i].id;
+        const answer=this.state.answers[i];
+        const userRef = firestore.doc(`answer/`+this.state.email+qid);
+        const ans={answer,qid,test_no};
+        try {
+          await userRef.set(ans);
+          console.log("done",i);
+      } catch (error) {
+          console.log(error);
+          alert(error.message);
+
+      }
+  }
+      //const snapShot = await firestore.collection('Users').get();
+    var attempted_by=[];
+    await firestore.collection("test").doc(test_no)
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+          attempted_by=doc.attempted_by;
+          attempted_by=doc.data().attempted_by;
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      }).catch(function(error) {
+        console.log("Error getting document:", error);
+      });
+      console.log(attempted_by);
+      attempted_by.push(this.state.email);
+    await firestore.collection("test").doc(test_no).update({
+    attempted_by:attempted_by
+    });
+    console.log("done");
+        alert("Created Submission");
+      if(window.location.port){
+          window.location.assign(`http://${window.location.hostname}:${window.location.port}/student`);
+      }
+      else{
+          window.location.assign(`http://${window.location.hostname}/`);
+      }
   }
   async f1() {
     let snapShot;
@@ -90,7 +120,11 @@ handleSubmit=()=>
       });
       return obj;
 }
-
+componentDidMount()
+{
+  this.setState({time:this.state.time+1});
+  console.log(this.state.time);
+}
 async componentWillMount()
 { 
 

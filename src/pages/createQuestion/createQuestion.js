@@ -18,9 +18,11 @@ class CreateQuestion extends React.Component{
       data:{}
     }
     let token=localStorage.getItem('token');
+    let email=localStorage.getItem('email');
     if(token=="faculty")
     {
       this.state.isFaculty=true;
+      this.state.email=email;
     }
 
   }
@@ -43,8 +45,8 @@ handleChange = (event) => {
           let id= Math.floor((Math.random() * 100) + 1);
           const userRef = firestore.doc(`questions/`+ id);
           //const snapShot = await firestore.collection('Users').get();
-          
-          const qa = {ques,model_ans,id};
+          const created_by=this.state.email;
+          const qa = {ques,model_ans,id,created_by};
 
           try {
               await userRef.set(qa);
