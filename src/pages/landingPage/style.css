@@ -3,14 +3,7 @@
 	display: flex;
 	justify-content: center;
 }
-.btns>*
+.x
 {
-	display: flex;
-	flex-direction: column;
-	margin:20px;
-}
-.btns .x
-{
-	width:13vw;
-	margin:20px;
+	font-size: 20px;
 }

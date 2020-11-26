@@ -45,45 +45,34 @@ componentDidMount()
       <div>
       <h1>This is Landing Page</h1>
       <div className='btns'>
-      <div>
       <Link to="/studentSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x br3"
             type="submit"
             value="SignIn as Student"
           />
       </Link>
-      <Link to="/studentSignUp">
-          <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
-            type="submit"
-            value="Student SignUp"
-          />
-      </Link>
-      </div>
-      <div>
       <Link to="/facultySignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x br3"
             type="submit"
             value="SignIn as Faculty"
           />
         </Link>
-        <Link to="facultySignUp">
+        <Link to="/adminSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x br3"
             type="submit"
-            value="Faculty SignUp"
+            value="SignIn as Admin"
           />
       </Link>
-      </div>
       </div></div>:
       <div>
       <h1>Already Logged in</h1>
       <div>
           <input
             onClick={this.handleSignOut}
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib br3"
             type="submit"
             value="Logout"
           />

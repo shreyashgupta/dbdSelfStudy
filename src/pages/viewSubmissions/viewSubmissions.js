@@ -1,7 +1,7 @@
 import React from 'react';
 import 'tachyons';
 import {Link, Redirect} from 'react-router-dom';
-
+import './style.css';
 import { auth , firestore} from '../../backend/server';
 //import {givVal} from '../../backend/index';
 //const { spawn } = require('child_process')
@@ -34,33 +34,33 @@ class ViewSubmissions extends React.Component {
           window.location.assign(`http://${window.location.hostname}/`);
       }
   }
-  // handleSubmit()
-  // {
-  //   console.log(this.state)
-  // }
-  // handleChange=(event)=>
-  // {
-  //   this.state.answers[event.target.name]=event.target.value;
-  // }
-  // takeTest=(event)=>
-  // {
-  //   localStorage.setItem('test_no',this.state.tests[event.target.name-1].id);
-  // }
-// async f1() {
-//     let snapShot =await firestore.collection('questions').doc(43);
-//       let obj;
-//       await snapShot.get().then(function(doc) {
-//           if (doc.exists) {
-//                 obj=doc.data();
-//           } else {
-//               // doc.data() will be undefined in this case
-//               console.log("No such document!");
-//           }
-//       }).catch(function(error) {
-//           console.log("Error getting document:", error);
-//       });
-//       return obj;
-// }
+  handleSubmit(event)
+  {
+    console.log(event.target.name,event.target.model_ans)
+  }
+  handleChange=(event)=>
+  {
+    this.state.answers[event.target.name]=event.target.value;
+  }
+  takeTest=(event)=>
+  {
+    localStorage.setItem('test_no',this.state.tests[event.target.name-1].id);
+  }
+async f1() {
+    let snapShot =await firestore.collection('questions').doc(43);
+      let obj;
+      await snapShot.get().then(function(doc) {
+          if (doc.exists) {
+                obj=doc.data();
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+      return obj;
+}
   f2 = async () => {
   const email=localStorage.getItem('email');
   let snapShot = await firestore.collection('answer').get();
@@ -113,18 +113,33 @@ async componentWillMount() {
   render() {
     return (
       this.state.isFaculty?
-      <div>
+      <div className='vs'>
       <h1>These are all ques attempted</h1>
+      <div className='cardlist'>
           {
           this.state.submissions.map((x,i)=>
-            <div>
-            <h1>{x.test_no}</h1>
-            <h2>{x.question}</h2>
-            <h3>{x.model_answer}</h3>
-            <h2>{x.answer}</h2>
-            </div>
+            <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card">
+              <h1 className="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">{x.question}</h1>
+              <div className="pa3 bt b--black-10">
+                <p className="f6 f5-ns lh-copy measure x ">
+                  <b>Students Answer: </b>{x.answer}
+                </p>
+                <p className="f6 f5-ns lh-copy measure x">
+                  <b>Model Answer: </b>{x.model_answer}
+                </p>
+                <input
+                    onClick={this.handleSubmit}
+                    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                    type="submit"
+                    value="Evaluate"
+                    name={x.answer}
+                    model_ans={x.model_answer}
+                />
+              </div>
+            </article>
             )
         }
+      </div>
       </div>
       :
       <div>

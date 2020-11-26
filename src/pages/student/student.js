@@ -90,32 +90,35 @@ async componentWillMount() {
   render() {
     return (
       this.state.isStudent?
-      <div>
+      <div className='fac'>
       <h1>Welcome  {this.state.name}</h1>
-      <h2>Available Tests</h2>
-      {
-        this.state.tests.length?
-          <div>
-          {
-            this.state.tests.map((x,i)=>
-            {
-                if(x.attempted_by.indexOf(this.state.email)==-1)
-                  return <Link to="/submissionPage"><input
-                      onClick={this.takeTest}
-                      className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
-                      type="submit"
-                      value={x.id}
-                      name={i+1}
-                  /></Link>
-            }
-              )
-          }
-          </div>:<h2>Loading</h2>
-      }
-      </div>
-      :
+        <div className='btns'>
+        <Link to="/viewTests">
+            <input
+              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib x"
+              type="submit"
+              value="Available Tests"
+            />
+        </Link>
+        <Link to="/attemptedTests">
+            <input
+              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib x"
+              type="submit"
+              value="Attempted Tests"
+            />
+        </Link>
+        <div>
+            <input
+              onClick={this.handleSignOut}
+              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x"
+              type="submit"
+              value="Logout"
+            />
+        </div>
+        </div>
+      </div>:
       <div>
-      <h1>Sign in as student required</h1>
+      <h1>Sign in as Student required</h1>
       </div>
     );
   }

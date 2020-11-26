@@ -1,0 +1,18 @@
+.cardlist
+{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.cardlist .x
+{
+	font-size: 15px;
+	text-align:justify;
+}
+/*.cardlist .card
+{
+	width:30vw;
+}
+.cardlist .card>*{
+	text-align: left;
+}*/

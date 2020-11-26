@@ -4,10 +4,13 @@ import { Route, BrowserRouter } from 'react-router-dom';
 // import Chat from './pages/chatbox/Chat';
 import StudentSignIn from './pages/studentSignIn/studentSignIn.js';
 import FacultySignIn from './pages/facultySignIn/facultySignIn.js';
+import AdminSignIn from './pages/adminSignIn/adminSignIn.js';
+import Admin from './pages/admin/admin.js';
 import FacultySignUp from './pages/facultySignUp/facultySignUp.js';
 import StudentSignUp from './pages/studentSignUp/studentSignUp.js';
 import SubmissionPage from './pages/submissionPage/submissionPage.js';
 import ViewSubmissions from './pages/viewSubmissions/viewSubmissions.js';
+import ViewTests from './pages/viewTests/viewTests.js';
 import CreateQuestion from './pages/createQuestion/createQuestion.js';
 import LandingPage from './pages/landingPage/landingPage.js';
 import Faculty from './pages/faculty/faculty.js';
@@ -48,6 +51,9 @@ function App() {
           <Route exact path='/viewSubmissions'>
             <ViewSubmissions/>
           </Route>
+          <Route exact path='/viewTests'>
+            <ViewTests/>
+          </Route>
           <Route exact path='/faculty'>
             <Faculty/>
           </Route>
@@ -56,6 +62,12 @@ function App() {
           </Route>
           <Route exact path='/createTest'>
             <CreateTest/>
+          </Route>
+          <Route exact path='/adminSignIn'>
+            <AdminSignIn/>
+          </Route>
+          <Route exact path='/admin'>
+            <Admin/>
           </Route>
         </div>
       </BrowserRouter>
