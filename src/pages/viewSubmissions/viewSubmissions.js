@@ -8,7 +8,7 @@ import { auth , firestore} from '../../backend/server';
 class ViewSubmissions extends React.Component {
  constructor(props) {
     super();
-    // this.handleSubmit=this.handleSubmit.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
     // this.handleChange=this.handleChange.bind(this);
     this.state=
     {
@@ -34,17 +34,28 @@ class ViewSubmissions extends React.Component {
           window.location.assign(`http://${window.location.hostname}/`);
       }
   }
-  handleSubmit(event)
+  async handleSubmit(event)
   {
-    console.log(event.target.name,event.target.model_ans)
-  }
-  handleChange=(event)=>
-  {
-    this.state.answers[event.target.name]=event.target.value;
-  }
-  takeTest=(event)=>
-  {
-    localStorage.setItem('test_no',this.state.tests[event.target.name-1].id);
+    const id=event.target.name;
+    console.log(id);
+    const aid=this.state.submissions[id].aid;
+    const answer=this.state.submissions[id].answer;
+    const model_answer=this.state.submissions[id].model_answer;
+
+    var washingtonRef = firestore.collection("answer").doc(aid);
+
+    // Set the "capital" field of the city 'DC'
+    await washingtonRef.update({
+    score:4
+    })
+    .then(function() {
+    console.log("Document successfully updated!");
+    })
+    .catch(function(error) {
+    // The document probably doesn't exist.
+    console.error("Error updating document: ", error);
+    });
+
   }
 async f1() {
     let snapShot =await firestore.collection('questions').doc(43);
@@ -78,8 +89,10 @@ async f1() {
                 {
                   test_no:arr[i].test_no,
                   answer:arr[i].answer,
+                  aid:arr[i].aid,
                   model_answer:doc.data().model_ans,
-                  question:doc.data().ques
+                  question:doc.data().ques,
+                  evaluated:false
                 })
           } else {
               // doc.data() will be undefined in this case
@@ -132,8 +145,7 @@ async componentWillMount() {
                     className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                     type="submit"
                     value="Evaluate"
-                    name={x.answer}
-                    model_ans={x.model_answer}
+                    name={i}
                 />
               </div>
             </article>

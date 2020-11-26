@@ -56,7 +56,6 @@ async componentWillMount() {
       this.state.isStudent?
       <div>
       <h1>Available Tests</h1>
-      <h2>Available Tests</h2>
       {
         this.state.tests.length?
           <div>

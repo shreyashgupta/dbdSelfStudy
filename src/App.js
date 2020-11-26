@@ -11,6 +11,7 @@ import StudentSignUp from './pages/studentSignUp/studentSignUp.js';
 import SubmissionPage from './pages/submissionPage/submissionPage.js';
 import ViewSubmissions from './pages/viewSubmissions/viewSubmissions.js';
 import ViewTests from './pages/viewTests/viewTests.js';
+import AttemptedTests from './pages/attemptedTests/attemptedTests.js';
 import CreateQuestion from './pages/createQuestion/createQuestion.js';
 import LandingPage from './pages/landingPage/landingPage.js';
 import Faculty from './pages/faculty/faculty.js';
@@ -68,6 +69,9 @@ function App() {
           </Route>
           <Route exact path='/admin'>
             <Admin/>
+          </Route>
+          <Route exact path='/attemptedTests'>
+            <AttemptedTests/>
           </Route>
         </div>
       </BrowserRouter>
