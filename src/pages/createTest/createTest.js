@@ -102,13 +102,13 @@ shuffle(o) {
       this.state.isFaculty?
             <div className>
             <h1>No. of Available Questions : {this.state.nques}</h1>
-            <ul className='ct'>
+            <div className='all_ques'>
                 {
                 this.state.ques.map((x,i)=>
-                  <h3><li>{x.ques}</li></h3>
+                  <p><b>{i+1}</b> : {x.ques}</p>
                   )
               }
-            </ul>
+            </div>
                 <article className="br3 ba b--black-10 mv4 tc w-50-m w-25-l mw6 shadow-5 center ">
                     <main className="pa4 black-80">
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -134,6 +134,11 @@ shuffle(o) {
                             </fieldset>
                     </main>
                 </article>
+                <Link to="/faculty"><input
+                    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
+                    type="submit"
+                    value="Back"
+                /></Link>
             </div>:<h1>You are not authorized to create question</h1>
     );
   }

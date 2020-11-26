@@ -41,12 +41,43 @@ class ViewSubmissions extends React.Component {
     const aid=this.state.submissions[id].aid;
     const answer=this.state.submissions[id].answer;
     const model_answer=this.state.submissions[id].model_answer;
+    var res;
 
-    var washingtonRef = firestore.collection("answer").doc(aid);
+    //evaluation 
+    res=await fetch(`https://api.dandelion.eu/datatxt/sim/v1?token=bdaae0974cad4108b1ab79b35d0baaeb&text1=${model_answer}&text2=${answer}`)
+      .then(response=> response.json())
+      .then(response=>response);
+    res=res.similarity*10;
+    // let d={
+    // method:"POST",
+    // body: JSON.stringify(
+    //   {
+    //     "answer":answer,
+    //     "model_answer":model_answer
+    //   }),
+    // headers:{
+    //   'Content-Type':'application/json'
+    // }
+    //     }
+    //     fetch(" http://127.0.0.1:5000/submit",d)
+    //     .then(res=>res.json())
+    //     .then(data=>{
+    //         if(data.res=="success")
+    //           {
+    //             alert("DONE"+ data.eval);
+    //             response= data.eval;
+    //           }
+    //         else{
+    //             alert("ERROR");
+    //             return;
+    //           }
+    //     });
+
+    var ansRef = firestore.collection("answer").doc(aid);
 
     // Set the "capital" field of the city 'DC'
-    await washingtonRef.update({
-    score:4
+    await ansRef.update({
+    score:res
     })
     .then(function() {
     console.log("Document successfully updated!");
@@ -131,7 +162,7 @@ async componentWillMount() {
       <div className='cardlist'>
           {
           this.state.submissions.map((x,i)=>
-            <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card">
+            <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card ma3">
               <h1 className="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">{x.question}</h1>
               <div className="pa3 bt b--black-10">
                 <p className="f6 f5-ns lh-copy measure x ">
@@ -152,6 +183,11 @@ async componentWillMount() {
             )
         }
       </div>
+      <Link to="/faculty"><input
+          className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
+          type="submit"
+          value="Back"
+      /></Link>
       </div>
       :
       <div>

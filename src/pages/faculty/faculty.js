@@ -82,6 +82,13 @@ async componentWillMount() {
               value="Create Test"
             />
         </Link>
+        <Link to="/viewSubmissions">
+            <input
+              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib x"
+              type="submit"
+              value="View Submissions"
+            />
+        </Link>
         <div>
             <input
               onClick={this.handleSignOut}

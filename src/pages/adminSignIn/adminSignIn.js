@@ -50,9 +50,9 @@ class AdminSignIn extends React.Component {
                     //console.log(array[i].email,this.state.email)
                  this.setState({currentUser: array[i]})
             //console.log(this.state.currentUser)
-            localStorage.setItem("name",this.state.currentUser.name)
-            localStorage.setItem("email",this.state.currentUser.email)
-            localStorage.setItem("phNo",this.state.currentUser.phNo)
+            // localStorage.setItem("name",this.state.currentUser.name)
+            // localStorage.setItem("email",this.state.currentUser.email)
+            // localStorage.setItem("phNo",this.state.currentUser.phNo)
   }
   onEmailChange = (event) => {
     this.setState({email: event.target.value})
@@ -75,7 +75,7 @@ class AdminSignIn extends React.Component {
           //alert(`Logged in as Employer successfully`);
           localStorage.setItem('token',"admin");
           localStorage.setItem('email',email);
-          alert("SignedIn as faculty")
+          alert("SignedIn as admin")
       if(window.location.port){
           window.location.assign(`http://${window.location.hostname}:${window.location.port}/admin`);
       }

@@ -15,16 +15,13 @@ class FacultySignUp extends React.Component {
             password: '',
             name: '',
             phNo:'',
-            isLoggedIn:false,
+            isAdmin:false,
             passwordc:''
         }
         const token=localStorage.getItem('token');
-        if(token==null)
-        {
-          this.state.isLoggedIn=false;
-        }
-        else
-          this.state.isLoggedIn=true;
+        if(token=="admin")
+          this.state.isAdmin=true;
+
     }
   handleSignOut = (event) => {
       auth.signOut();
@@ -80,7 +77,7 @@ class FacultySignUp extends React.Component {
                 })
                 alert("SignUp Successdull");
               if(window.location.port){
-                  window.location.assign(`http://${window.location.hostname}:${window.location.port}/`);
+                  window.location.assign(`http://${window.location.hostname}:${window.location.port}/admin`);
               }
               else{
                   window.location.assign(`http://${window.location.hostname}/`);
@@ -95,7 +92,7 @@ class FacultySignUp extends React.Component {
 
     render() {
         return (
-            this.state.isLoggedIn==false?
+            this.state.isAdmin==true?
             <div className="cover fs"><article className="br3 ba b--black-10 mv4 tc w-00 w-50-m w-25-l mw6 shadow-5 center main">
                 <main className="pa4 black-80">
                     <div className="measure">

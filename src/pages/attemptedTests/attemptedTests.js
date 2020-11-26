@@ -121,6 +121,11 @@ async componentWillMount() {
           }
           </div>:<h2>Loading</h2>
       }
+      <Link to="/student"><input
+          className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
+          type="submit"
+          value="Back"
+      /></Link>
       </div>
       :
       <div>

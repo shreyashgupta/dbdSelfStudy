@@ -2,8 +2,11 @@
 {
 	display: flex;
 	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
-.x
+.y
 {
 	font-size: 20px;
+	margin:20px;
 }

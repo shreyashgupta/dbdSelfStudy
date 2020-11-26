@@ -40,7 +40,7 @@ class Admin extends React.Component {
       this.state.isAdmin?
       <div className='admin'>
       <h1>Signed In as <br/>{this.state.email}</h1>
-      <Link to="facultySignUp">
+      <Link to="studentSignUp">
           <input
             className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma5"
             type="submit"

@@ -1,13 +1,18 @@
 .sub
 {
-	border: solid gray 2px;
+	border: solid black 2px;
 	border-radius: 10px;
 	margin:50px;
 	width:400px;
 }
 .qa
 {
-	border: solid gray 2px;
+	border: solid black 2px;
+	text-align: justify;
+}
+.qa>*
+{
+	margin:15px;
 }
 .attempted
 {

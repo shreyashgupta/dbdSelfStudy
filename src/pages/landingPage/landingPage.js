@@ -47,21 +47,21 @@ componentDidMount()
       <div className='btns'>
       <Link to="/studentSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x br3"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib y  br3"
             type="submit"
             value="SignIn as Student"
           />
       </Link>
       <Link to="/facultySignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x br3"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib y br3"
             type="submit"
             value="SignIn as Faculty"
           />
         </Link>
         <Link to="/adminSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib x br3"
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib y br3"
             type="submit"
             value="SignIn as Admin"
           />
