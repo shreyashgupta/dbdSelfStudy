@@ -158,7 +158,7 @@ async componentWillMount() {
     return (
       this.state.isFaculty?
       <div className='vs'>
-      <legend className="f1 fw6 ph0 mh0 ma3">These are all the submissions</legend>
+      <legend className="f1 fw6 ph0 mh0 ma3 center">These are all the submissions</legend>
       {
           
           this.state.submissions.length?<div className='cardlist'>

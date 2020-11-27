@@ -41,27 +41,27 @@ componentDidMount()
 }
   render() {
     return (
-      this.state.isLoggedin==false?
-      <div>
-      <h1>This is Landing Page</h1>
-      <div className='btns'>
+      <div className='lp tc '>
+      {this.state.isLoggedin==false?
+      <div className='pbtns'>
+      <div className='btns shadow-5'>
       <Link to="/studentSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib y  br3"
+            className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib y  br3"
             type="submit"
             value="SignIn as Student"
           />
       </Link>
       <Link to="/facultySignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib y br3"
+            className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib y br3"
             type="submit"
             value="SignIn as Faculty"
           />
         </Link>
         <Link to="/adminSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib y br3"
+            className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib y br3"
             type="submit"
             value="SignIn as Admin"
           />
@@ -78,6 +78,8 @@ componentDidMount()
           />
       </div>
       </div>
+    }
+    </div>
     );
   }
 }
