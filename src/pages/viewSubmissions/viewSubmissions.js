@@ -48,6 +48,8 @@ class ViewSubmissions extends React.Component {
       .then(response=> response.json())
       .then(response=>response);
     res=res.similarity*10;
+
+
     // let d={
     // method:"POST",
     // body: JSON.stringify(
@@ -86,7 +88,10 @@ class ViewSubmissions extends React.Component {
     // The document probably doesn't exist.
     console.error("Error updating document: ", error);
     });
+    // let temp=this.state.submissions;
 
+    // temp[id].evaluated=true;
+    // this.setState({submissions:temp});
   }
 async f1() {
     let snapShot =await firestore.collection('questions').doc(43);
@@ -123,7 +128,7 @@ async f1() {
                   aid:arr[i].aid,
                   model_answer:doc.data().model_ans,
                   question:doc.data().ques,
-                  evaluated:false
+                  score:arr[i].score
                 })
           } else {
               // doc.data() will be undefined in this case
@@ -164,7 +169,9 @@ async componentWillMount() {
           this.state.submissions.length?<div className='cardlist'>
               {
               this.state.submissions.map((x,i)=>
-                <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card ma3">
+              {
+                  if(x.score==-1)
+                    return <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card ma3">
                   <h1 className="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">{x.question}</h1>
                   <div className="pa3 bt b--black-10">
                     <p className="f6 f5-ns lh-copy measure x ">
@@ -182,6 +189,7 @@ async componentWillMount() {
                     />
                   </div>
                 </article>
+                }
                 )
             }
           </div>:<div class="loader">Loading...</div>

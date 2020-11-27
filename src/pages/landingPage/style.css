@@ -1,16 +1,11 @@
-.pbtns
-{
-	display: flex;
-	justify-content: center;
-}
 .pbtns .btns
 {
 	padding:30px;
 	border-radius: 20px;
 	margin-top: 35vh;
 	position: absolute;
-	background-color: rgba(0,0,0,.9);
 	display: flex;
+	width:50vw;
 	justify-content: center;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -18,15 +13,31 @@
 .y
 {
 	font-size: 20px;
-	color: white;
 	margin:20px;
 }
 .lp
 {
-	background-image: url('./bg.jpg');
+	background-image: url('./bg2.jpg');
 	height:100vh;
 	justify-content: center;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+.y:hover
+{
+	color:white;
+}
+.heading
+{
+	display: flex;
+	justify-content: center;
+
+}
+.head
+{
+	font-family: 'Cabin', sans-serif;
+	color: #000000;
+	border-radius: 10px;
+	position: absolute;
 }

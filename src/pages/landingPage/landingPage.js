@@ -41,27 +41,31 @@ componentDidMount()
 }
   render() {
     return (
-      <div className='lp tc '>
+      <div className='lp'>
       {this.state.isLoggedin==false?
-      <div className='pbtns'>
-      <div className='btns shadow-5'>
+      <div className='pbtns '>
+      <div className="heading">
+          <legend className="f1 fw6 mh0 mv4 head pa3">R-VISION</legend>
+      </div>
+
+      <div className='btns '>
       <Link to="/studentSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib y  br3"
+            className="b ph3 pv2 input-reset hover-bg-black ba b--black bg-transparent grow pointer f6 dib y  br3"
             type="submit"
             value="SignIn as Student"
           />
       </Link>
       <Link to="/facultySignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib y br3"
+            className="b ph3 pv2 input-reset hover-bg-black ba b--black bg-transparent grow pointer f6 dib y br3"
             type="submit"
             value="SignIn as Faculty"
           />
         </Link>
         <Link to="/adminSignIn">
           <input
-            className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib y br3"
+            className="b ph3 pv2 input-reset hover-bg-black ba b--black bg-transparent grow pointer f6 dib y br3"
             type="submit"
             value="SignIn as Admin"
           />
@@ -79,6 +83,7 @@ componentDidMount()
       </div>
       </div>
     }
+<script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
     </div>
     );
   }
