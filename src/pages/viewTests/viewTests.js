@@ -2,6 +2,7 @@ import React from 'react';
 import 'tachyons';
 import {Link, Redirect} from 'react-router-dom';
 import { auth , firestore} from '../../backend/server';
+// import './style.css'
 //import {givVal} from '../../backend/index';
 //const { spawn } = require('child_process')
 class ViewTests extends React.Component {
@@ -55,7 +56,7 @@ async componentWillMount() {
     return (
       this.state.isStudent?
       <div>
-      <h1>Available Tests</h1>
+      <legend className="f1 fw6 ph0 mh0 center ma3">Available Tests</legend>
       {
         this.state.tests.length?
           <div>
@@ -73,7 +74,7 @@ async componentWillMount() {
             }
               )
           }
-          </div>:<h2>Loading</h2>
+          </div>:<div class="loader">Loading...</div>
       }
       <Link to="/student"><input
           className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"

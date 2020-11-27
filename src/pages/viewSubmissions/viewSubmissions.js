@@ -158,31 +158,34 @@ async componentWillMount() {
     return (
       this.state.isFaculty?
       <div className='vs'>
-      <h1>These are all ques attempted</h1>
-      <div className='cardlist'>
-          {
-          this.state.submissions.map((x,i)=>
-            <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card ma3">
-              <h1 className="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">{x.question}</h1>
-              <div className="pa3 bt b--black-10">
-                <p className="f6 f5-ns lh-copy measure x ">
-                  <b>Students Answer: </b>{x.answer}
-                </p>
-                <p className="f6 f5-ns lh-copy measure x">
-                  <b>Model Answer: </b>{x.model_answer}
-                </p>
-                <input
-                    onClick={this.handleSubmit}
-                    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                    type="submit"
-                    value="Evaluate"
-                    name={i}
-                />
-              </div>
-            </article>
-            )
-        }
-      </div>
+      <legend className="f1 fw6 ph0 mh0 ma3">These are all the submissions</legend>
+      {
+          
+          this.state.submissions.length?<div className='cardlist'>
+              {
+              this.state.submissions.map((x,i)=>
+                <article className="center mw5 mw6-ns br3 hidden ba b--black-10 mv4 card ma3">
+                  <h1 className="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">{x.question}</h1>
+                  <div className="pa3 bt b--black-10">
+                    <p className="f6 f5-ns lh-copy measure x ">
+                      <b>Students Answer: </b>{x.answer}
+                    </p>
+                    <p className="f6 f5-ns lh-copy measure x">
+                      <b>Model Answer: </b>{x.model_answer}
+                    </p>
+                    <input
+                        onClick={this.handleSubmit}
+                        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                        type="submit"
+                        value="Evaluate"
+                        name={i}
+                    />
+                  </div>
+                </article>
+                )
+            }
+          </div>:<div class="loader">Loading...</div>
+    }
       <Link to="/faculty"><input
           className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
           type="submit"

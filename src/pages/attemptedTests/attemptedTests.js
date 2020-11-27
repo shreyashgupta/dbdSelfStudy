@@ -94,7 +94,7 @@ async componentWillMount() {
     return (
       this.state.isStudent?
       <div>
-      <h1>Attempted Tests</h1>
+      <legend className="f1 fw6 ph0 mh0 center ma3">Attempted Tests</legend>
       {
         this.state.attempted_tests.length?
           <div className="attempted">
@@ -110,7 +110,7 @@ async componentWillMount() {
                   <div className='qa'>
                   <p><b>Question : </b>{y.question}</p>
                   <p><b>Answer : </b>{y.answer}</p>
-                  <p><b>Score : </b>{y.score}</p>
+                  <p><b>Score : </b>{y.score}/10</p>
                   </div>
                   )
                 }
@@ -119,7 +119,7 @@ async componentWillMount() {
             }
               )
           }
-          </div>:<h2>Loading</h2>
+          </div>:<div class="loader">Loading...</div>
       }
       <Link to="/student"><input
           className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib ma2"
