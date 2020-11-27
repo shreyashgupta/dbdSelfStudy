@@ -110,7 +110,11 @@ async componentWillMount() {
                   <div className='qa'>
                   <p><b>Question : </b>{y.question}</p>
                   <p><b>Answer : </b>{y.answer}</p>
-                  <p><b>Score : </b>{y.score}/10</p>
+                  {
+                    y.score!=-1?
+                      <p><b>Score : </b>{y.score}/10</p>:
+                      <p>Not evaluated yet</p>
+                  }
                   </div>
                   )
                 }

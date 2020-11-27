@@ -42,7 +42,7 @@ handleChange = (event) => {
       if(ques.length==0 || model_ans.length==0 )
           alert("details entered not valid")
       else {
-          let id= Math.floor((Math.random() * 100) + 1);
+          let id= Math.floor((Math.random() * 1000) + 1);
           const userRef = firestore.doc(`questions/`+ id);
           //const snapShot = await firestore.collection('Users').get();
           const created_by=this.state.email;
